@@ -38,34 +38,14 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans antialiased">
         <ThemeProvider>
           <TooltipProvider>
-            <header className="flex items-center justify-between border-b px-6 py-4">
-
-             
-              <h1 className="text-lg font-semibold">RCMD</h1>
-              <div className="flex gap-2">
-                 <ModeToggle />
-                 
-                <Button asChild variant="outline">
-                  <Link href="/auth/login">Login</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/auth/signup">Sign Up</Link>
-                </Button>
-              </div>
-            </header>
+            
 
             {/* PAGE CONTENT - This will stretch */}
             <main className="flex-1 flex flex-col">
               {children}
             </main>
 
-            {/* FOOTER */}
-            <footer className="border-t px-6 py-4 text-center text-xs text-muted-foreground bg-amber-700">
-              <p>© {new Date().getFullYear()} My Project. All rights reserved.</p>
-              <p className="mt-1">
-                Credits: Built with Next.js, Tailwind CSS, and shadcn/ui
-              </p>
-            </footer>
+            
           </TooltipProvider>
         </ThemeProvider>
       </body>

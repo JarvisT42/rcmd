@@ -1,0 +1,11 @@
+DO THIS (Full reset to GitHub)
+
+Run these commands:
+
+git fetch origin
+git reset --hard origin/main
+git clean -fd
+What each one does:
+fetch → gets latest GitHub data
+reset --hard → forces your code to match GitHub exactly
+clean -fd → deletes untracked files (like your (public) folder if not committed)
