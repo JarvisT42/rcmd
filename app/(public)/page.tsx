@@ -1,8 +1,4 @@
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 
-
-import { SectionCards } from "@/components/section-cards"
 import { DataTable } from "@/components/data-table"
 import data from "./data.json"
 

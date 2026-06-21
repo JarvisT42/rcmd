@@ -1,0 +1,16 @@
+for jwt auth
+
+1. Install required packages
+
+Inside your project folder:
+
+npm install jsonwebtoken bcryptjs
+
+Optional (for cookies):
+
+npm install cookie
+2. Create a JWT secret
+
+Create a .env.local file:
+
+JWT_SECRET=your_super_secret_key_here
