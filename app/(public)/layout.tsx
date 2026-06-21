@@ -8,14 +8,14 @@ export default function PublicLayout({
 }) {
   return (
     <div className="min-h-screen flex flex-col">
-      
+
       {/* HEADER */}
       <header className="flex items-center justify-between border-b px-6 py-4">
 
 
-<Link href="/">
-  <h1 className="text-lg font-semibold">RCMD</h1>
-</Link>
+        <Link href="/">
+          <h1 className="text-lg font-semibold">RCMD</h1>
+        </Link>
 
 
 
