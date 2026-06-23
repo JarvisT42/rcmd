@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export function proxy(req: NextRequest) {
     const token = req.cookies.get("token")?.value;
-
+    console.log("Token from cookie:", token);
     // 1. NO TOKEN
     if (!token) {
         return NextResponse.redirect(new URL("/auth/login", req.url));
