@@ -8,6 +8,9 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/ui/darkmode"
+import { Toaster } from "@/components/ui/sonner"
+
+
 
 
 const inter = Inter({
@@ -38,14 +41,15 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans antialiased">
         <ThemeProvider>
           <TooltipProvider>
-            
+
 
             {/* PAGE CONTENT - This will stretch */}
             <main className="flex-1 flex flex-col">
               {children}
+              <Toaster />
             </main>
 
-            
+
           </TooltipProvider>
         </ThemeProvider>
       </body>

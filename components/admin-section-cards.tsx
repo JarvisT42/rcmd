@@ -9,8 +9,8 @@ import {
 
 import { useForm } from "react-hook-form"
 
-
-
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -24,30 +24,74 @@ import {
 import { TrendingUpIcon, UsersIcon, ShieldCheckIcon, DatabaseIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+
+
+
+
 
 type UserForm = {
-  username: string
-  email: string
+  fullname: string
   password: string
+  role: string
 }
 
 
 
 export function AdminSectionCards() {
 
+
+  const [open, setOpen] = useState(false)
+
   const {
     register,
     handleSubmit,
     reset,
+    formState: { errors },
   } = useForm<UserForm>()
 
-  const onSubmit = (data: UserForm) => {
-    console.log(data)
+  const onSubmit = async (data: UserForm) => {
+    try {
+      const response = await fetch("/api/database/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-    toast.success("User created successfully!")
+      const result = await response.json()
 
-    reset()
+      if (response.ok) {
+        toast.success(result.message || "User created successfully!")
+
+        reset()
+        setOpen(false)
+      } else {
+        toast.error(result.message || "Failed to create user")
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error("Something went wrong")
+    }
   }
+
+
+
+
+  const [totalUsers, setTotalUsers] = useState(0)
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch("/api/database/users")
+      const data = await response.json()
+      setTotalUsers(data.totalUsers)
+    }
+    fetchUsers()
+  }, [])
+
 
   return (
     <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
@@ -62,7 +106,7 @@ export function AdminSectionCards() {
 
 
               <CardTitle className="text-2xl font-semibold mt-1">
-                1,245
+                {totalUsers.toLocaleString()}
               </CardTitle>
 
             </div>
@@ -71,14 +115,14 @@ export function AdminSectionCards() {
 
             <Badge variant="outline" className="flex items-center gap-1">
               <UsersIcon />
-              +8.2%
+              
             </Badge>
 
           </div>
 
 
 
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button className="mt-4 w-full">
                 Add User
@@ -90,27 +134,72 @@ export function AdminSectionCards() {
                 <DialogTitle>Add New User</DialogTitle>
               </DialogHeader>
 
-              {/* React Hook Form goes here */}
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  className="w-full border rounded-md p-2"
-                />
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label>Full Name</Label>
+                  <Input
+                    placeholder="Enter full name"
+                    {...register("fullname", {
+                      required: "Full name is required",
+                    })}
+                  />
 
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full border rounded-md p-2"
-                />
+                  {errors.fullname && (
+                    <p className="text-sm text-red-500">
+                      {errors.fullname.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label>Role</Label>
 
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="w-full border rounded-md p-2"
-                />
+                  <select
+                    className="w-full rounded-md border bg-background px-3 py-2 text-sm"
+                    {...register("role", {
+                      required: "Please select a role",
+                    })}
+                  >
+                    {errors.role && (
+                      <p className="text-sm text-red-500">
+                        {errors.role.message}
+                      </p>
+                    )}
+                    <option value="">Select role</option>
+                    <option value="admin">Admin</option>
 
-                <Button type="submit" className="w-full">
+                    <option value="user">User</option>
+                  </select>
+                </div>
+
+
+                <div className="space-y-2">
+                  <Label>Password</Label>
+                  <Input
+                    type="password"
+                    placeholder="Enter password"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters",
+                      },
+                    })}
+                  />
+
+                  {errors.password && (
+                    <p className="text-sm text-red-500">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full"
+                >
                   Create User
                 </Button>
               </form>
