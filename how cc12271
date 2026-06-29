@@ -1,0 +1,60 @@
+[33mcommit 2c95f7ffb88b0a629c16dce6c38cd43b441db3ea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Tue Jun 23 21:34:43 2026 +0800
+
+    success-login-system
+
+[33mcommit 65a57c614d088c1ff05689fa5482ff51708d5e8e[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Tue Jun 23 06:24:07 2026 +0800
+
+    nee
+
+[33mcommit 310798ebd302e21ea3c6987d893f0d4c32814b89[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Sun Jun 21 22:01:52 2026 +0800
+
+    6/21/2026-1001
+
+[33mcommit f34def631f03c9e27702f32b57062737a6df2a4a[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Sun Jun 21 19:04:37 2026 +0800
+
+    6/21/26-704
+
+[33mcommit ac754aa72659c269ccc8201f2bd733ab14d02cae[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Sun Jun 21 18:57:30 2026 +0800
+
+    hello
+
+[33mcommit 77945903142be3dc5163724f425eaa1af4980f85[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Fri Jun 19 20:06:40 2026 +0800
+
+    6/19/26
+
+[33mcommit d0520c4f6f7d315b85203c2d0bf6e140c136bb3a[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Fri Jun 19 06:19:50 2026 +0800
+
+    fix layout and login page UI
+
+[33mcommit 6cc58735db9f76518cb8b538a44c7abd6759fdb3[m
+Merge: 1156699 cc12271
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Fri Jun 19 05:39:02 2026 +0800
+
+    resolve merge conflict, keep local README
+
+[33mcommit 1156699d3ba9d6e2d7dfdd29f2f26df558880cf7[m
+Author: JarvisT42 <kentjoshuazamoradaborbor@gmail.com>
+Date:   Fri Jun 19 05:30:45 2026 +0800
+
+    initail commit
+
+[33mcommit cc12271afb2287ca478abb9c766f78b87983fa0f[m
+Author: JarvisT42 <139759957+JarvisT42@users.noreply.github.com>
+Date:   Fri Jun 19 05:26:30 2026 +0800
+
+    Initial commit

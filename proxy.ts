@@ -9,6 +9,10 @@ export function proxy(req: NextRequest) {
         return NextResponse.redirect(new URL("/auth/login", req.url));
     }
 
+
+
+
+
     try {
         // 2. VERIFY TOKEN (this checks expiry too)
         jwt.verify(token, process.env.JWT_SECRET as string);
@@ -22,5 +26,7 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/admin/:path*", "/user/:path*"],
+    matcher: ["/admin/:path*", "/user/:path*",
+        "/api/rform/:path*",
+    ],
 };
