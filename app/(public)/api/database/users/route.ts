@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json()
 
-        const { fullname, password, role } = body
+        const { fullname, username, password, role } = body
 
         const pool = await connectDB()
 
@@ -84,16 +84,20 @@ export async function POST(req: NextRequest) {
         // Insert user
         await pool.request()
             .input("fullname", fullname)
+            .input("username",username )
             .input("password", hashedPassword)
             .input("role", role)
             .query(`
         INSERT INTO users (
           fullname,
+          username,
           password,
           role
         )
         VALUES (
+
           @fullname,
+          @username,
           @password,
           @role
         )
@@ -110,7 +114,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                message: "Failed to create user",
+                message: "Failed to create user" + error,
             },
             {
                 status: 500,

@@ -34,6 +34,7 @@ import { Label } from "@/components/ui/label"
 
 type UserForm = {
   fullname: string
+  username: string
   password: string
   role: string
 }
@@ -153,6 +154,24 @@ export function AdminSectionCards() {
                     </p>
                   )}
                 </div>
+
+                <div className="space-y-2">
+                  <Label>User Name</Label>
+                  <Input
+                    placeholder="Enter full name"
+                    {...register("username", {
+                      required: "Full name is required",
+                    })}
+                  />
+
+                  {errors.username && (
+                    <p className="text-sm text-red-500">
+                      {errors.username.message}
+                    </p>
+                  )}
+                </div>
+
+
                 <div className="space-y-2">
                   <Label>Role</Label>
 

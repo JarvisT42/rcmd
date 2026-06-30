@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import {
   Avatar,
   AvatarFallback,
@@ -32,6 +33,27 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+
+
+
+
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+      })
+
+      if (response.ok) {
+        router.push("/auth/login")
+        router.refresh()
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
 
   return (
     <SidebarMenu>
@@ -94,9 +116,8 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOutIcon
-              />
+            <DropdownMenuItem onClick={handleLogout}>
+              <LogOutIcon />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
