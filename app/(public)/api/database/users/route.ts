@@ -6,25 +6,38 @@ import bcrypt from "bcryptjs"
 
 
 export async function GET() {
-
-    try {
-        const pool = await connectDB()
-        const result = await pool.request().query(`
-        select count(*) as totalUsers
-        from users`)
-
-
-        
-        return NextResponse.json(result.recordset[0])
-    } catch (error) {
-        return NextResponse.json(
-            { message: "Failed to fetch users count" },
-            { status: 500 }
-        )
-
-    }
-
-
+  try {
+    const pool = await connectDB();
+    
+    // Get all users with status
+    const result = await pool.request().query(`
+      SELECT 
+        id, 
+        fullname, 
+        username, 
+        role, 
+        is_active, 
+        created_at, 
+        deleted_at 
+      FROM users 
+      ORDER BY created_at DESC
+    `);
+    
+    const users = result.recordset;
+    const activeUsers = users.filter((u: any) => u.is_active === 1 || u.is_active === true).length;
+    
+    return NextResponse.json({
+      users,
+      totalUsers: users.length,
+      activeUsers
+    });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return NextResponse.json(
+      { message: "Failed to fetch users" },
+      { status: 500 }
+    );
+  }
 }
 
 

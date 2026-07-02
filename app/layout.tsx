@@ -39,7 +39,7 @@ export default function RootLayout({
       className={cn(inter.variable, fontMono.variable)}
     >
       <body className="min-h-screen flex flex-col font-sans antialiased">
-        <ThemeProvider>
+        
           <TooltipProvider>
 
 
@@ -51,7 +51,7 @@ export default function RootLayout({
 
 
           </TooltipProvider>
-        </ThemeProvider>
+        
       </body>
     </html>
   )
